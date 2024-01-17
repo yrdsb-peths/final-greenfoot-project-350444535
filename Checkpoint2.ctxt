@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Checkpoint2
+comment0.text=\n\ Write\ a\ description\ of\ class\ Checkpoint2\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Checkpoint2()
+comment2.params=
+comment2.target=void\ animateActivating()
+comment3.params=
+comment3.target=void\ levelUp2()
+comment4.params=
+comment4.target=void\ resetWorld1()
+comment5.params=
+comment5.target=void\ world2Build()
+comment6.params=
+comment6.target=void\ act()
+comment6.text=\n\ Act\ -\ do\ whatever\ the\ Checkpoint2\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+numComments=7
