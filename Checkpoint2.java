@@ -96,9 +96,9 @@ public class Checkpoint2 extends Actor
             Terrain2 terrain222 = new Terrain2();
             getWorld().addObject(terrain222,156,81);
             
-            Terrain3 terrain34 = new Terrain3();
-            getWorld().addObject(terrain34,361,85);
-            terrain34.setLocation(362,86);
+            Terrain3 terrain234 = new Terrain3();
+            getWorld().addObject(terrain234,361,85);
+            terrain234.setLocation(362,86);
             Terrain2 terrain24 = new Terrain2();
             getWorld().addObject(terrain24,362,86);
             
@@ -193,31 +193,31 @@ public class Checkpoint2 extends Actor
             getWorld().addObject(spikes2,166,363);
             Spikes spikes3 = new Spikes();
             getWorld().addObject(spikes3,83,361);
+            
             Terrain3 terrain3 = new Terrain3();
             getWorld().addObject(terrain3,155,170);
             Terrain3 terrain32 = new Terrain3();
             getWorld().addObject(terrain32,140,216);
             Terrain3 terrain33 = new Terrain3();
-            getWorld().addObject(terrain33,108,257);
-            terrain33.setLocation(108,257);
+            getWorld().addObject(terrain33,108,240);
             Terrain2 terrain2 = new Terrain2();
-            getWorld().addObject(terrain2,108,257);
+            getWorld().addObject(terrain2,108,240);
             terrain32.setLocation(142,219);
             Terrain2 terrain22 = new Terrain2();
             getWorld().addObject(terrain22,142,219);
-            terrain3.setLocation(155,170);
             Terrain2 terrain23 = new Terrain2();
             getWorld().addObject(terrain23,155,170);
+            
             Fan fan3 = new Fan();
-            getWorld().addObject(fan3,87,230);
+            getWorld().addObject(fan3,87,212);
+            
             Terrain3 terrain349 = new Terrain3();
             getWorld().addObject(terrain349,15,129);
-            terrain34.setLocation(15,129);
             Terrain2 terrain249 = new Terrain2();
             getWorld().addObject(terrain249,15,129);
+            
             Finish finish = new Finish();
             getWorld().addObject(finish,23,75);
-            
         }
     }
     /**
