@@ -12,6 +12,9 @@ public class playerCharacter extends Actor
      * Act - do whatever the playerCharacter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    Label label102 = new Label("You Died!", 100);
+    Label label103 = new Label("Click reset to retry", 50);
+    Label label104 = new Label("You Win!", 100);
     GreenfootImage[] runningRight = new GreenfootImage[12];
     GreenfootImage[] runningLeft = new GreenfootImage[12];
     GreenfootImage[] idleRight = new GreenfootImage[11];
@@ -22,6 +25,7 @@ public class playerCharacter extends Actor
     int imageIndex = 0;
     int idleImageIndex = 0;
     int respawnLevel = 0;
+    int life = 1;
     public playerCharacter()
     {
         for(int i = 0; i < runningRight.length; i++)
@@ -137,86 +141,93 @@ public class playerCharacter extends Actor
     public void act()
     {
         // Add your action code here.
-        
-        if(isTouching(Terrain1.class) || isTouching(Terrain2.class) || isTouching(Terrain3.class))
+        if(life == 1)
         {
-        }
-        else
-        {
-            setLocation(getX(), getY() + 2);
-        }
-        
-        if(Greenfoot.isKeyDown("left"))
-        {
-            move(-2);
-            facing = "left";
-            if(isTouching(Terrain2.class) || isTouching(Terrain4.class))
+            if(isTouching(Terrain1.class) || isTouching(Terrain2.class) || isTouching(Terrain3.class))
             {
-                move(2);
-            }
-            if(Greenfoot.isKeyDown("up"))
-            {
-                jump();
-            }
-        }
-        else if(Greenfoot.isKeyDown("right"))
-        {
-            move(2);
-            facing = "right";
-            if(isTouching(Terrain2.class) || isTouching(Terrain4.class))
-            {
-                move(-2);
-            }
-            if(Greenfoot.isKeyDown("up"))
-            {
-                jump();
-            }
-        }
-        else if(Greenfoot.isKeyDown("up"))
-        {
-            jump();
-        }
-        
-        finish();
-        
-        if(isTouching(Spikes.class))
-        {
-            spiked();
-        }
-        
-        if(isTouching(Fan.class))
-        {
-            setLocation(getX(), getY() - 30);
-            Greenfoot.delay(5);
-            setLocation(getX(), getY() - 30);
-            Greenfoot.delay(5);
-            setLocation(getX(), getY() - 20);
-            Greenfoot.delay(5);
-            setLocation(getX(), getY() - 20);
-            Greenfoot.delay(5);
-            setLocation(getX(), getY() - 20);
-            Greenfoot.delay(5);
-        }
-        
-        if(isTouching(Terrain1.class) || isTouching(Terrain3.class))
-        {
-            if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right"))
-            {
-                animateWalking();   
             }
             else
             {
-                animateIdle();
+                setLocation(getX(), getY() + 2);
+            }
+            
+            if(Greenfoot.isKeyDown("left"))
+            {
+                move(-2);
+                facing = "left";
+                if(isTouching(Terrain2.class) || isTouching(Terrain4.class))
+                {
+                    move(2);
+                }
+                if(Greenfoot.isKeyDown("up"))
+                {
+                    jump();
+                }
+            }
+            else if(Greenfoot.isKeyDown("right"))
+            {
+                move(2);
+                facing = "right";
+                if(isTouching(Terrain2.class) || isTouching(Terrain4.class))
+                {
+                    move(-2);
+                }
+                if(Greenfoot.isKeyDown("up"))
+                {
+                    jump();
+                }
+            }
+            else if(Greenfoot.isKeyDown("up"))
+            {
+                jump();
+            }
+            
+            finish();
+            
+            if(isTouching(Spikes.class))
+            {
+                spiked();
+            }
+            
+            if(isTouching(Fan.class))
+            {
+                setLocation(getX(), getY() - 30);
+                Greenfoot.delay(5);
+                setLocation(getX(), getY() - 30);
+                Greenfoot.delay(5);
+                setLocation(getX(), getY() - 20);
+                Greenfoot.delay(5);
+                setLocation(getX(), getY() - 20);
+                Greenfoot.delay(5);
+                setLocation(getX(), getY() - 20);
+                Greenfoot.delay(5);
+            }
+            
+            if(isTouching(Terrain1.class) || isTouching(Terrain3.class))
+            {
+                if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right"))
+                {
+                    animateWalking();   
+                }
+                else
+                {
+                    animateIdle();
+                }
+            }
+            else if(!isTouching(Terrain1.class) || !isTouching(Terrain2.class) || !isTouching(Terrain3.class))
+            {
+                animateFalling();
             }
         }
-        else if(!isTouching(Terrain1.class) || !isTouching(Terrain2.class) || !isTouching(Terrain3.class))
+        else
         {
-            animateFalling();
+            GreenfootImage death = new GreenfootImage("images/Death.png");
+            setImage(death);
         }
     }
     public void jump()//jump code
     {
-        if(isTouching(Terrain1.class) || isTouching(Terrain3.class)) //on ground
+        if(isTouching(Terrain1.class) || isTouching(Terrain3.class) && !isTouching(Terrain2.class)) //on ground
         {
             if(facing.equals("right"))
             {
@@ -238,7 +249,7 @@ public class playerCharacter extends Actor
                 Greenfoot.delay(5);
                 if(!isTouching(Terrain1.class) || !isTouching(Terrain3.class))
                 {
-                    setLocation(getX(), getY() - 20);
+                    setLocation(getX(), getY() - 15);
                     move(-15);
                     Greenfoot.delay(5);
                     if(!isTouching(Terrain1.class) || !isTouching(Terrain3.class))
@@ -247,16 +258,28 @@ public class playerCharacter extends Actor
                         move(-20);
                         Greenfoot.delay(5);
                     }
+                    else
+                    {
+                        
+                    }
                 }
+                else
+                {
+                    
+                }
+                
+                
             }
             else if(facing.equals("right"))
             {
+                
+                
                 setLocation(getX(), getY() - 15);
                 move(10);
                 Greenfoot.delay(5);
                 if(!isTouching(Terrain1.class) || !isTouching(Terrain3.class))
                 {
-                    setLocation(getX(), getY() - 20);
+                    setLocation(getX(), getY() - 15);
                     move(15);
                     Greenfoot.delay(5);
                     if(!isTouching(Terrain1.class) || !isTouching(Terrain3.class))
@@ -274,6 +297,7 @@ public class playerCharacter extends Actor
                 {
                     
                 }
+                
             }
         }
         else
@@ -283,15 +307,10 @@ public class playerCharacter extends Actor
     }
     public void spiked()// code when the character hits spikes
     {
-        animateHit();
-        if(facing.equals("right"))
-        {
-            move(-20);
-        }
-        else
-        {
-            move(20);
-        }
+        //getWorld().removeObjects(getWorld().getObjects(playerCharacter.class));
+        getWorld().addObject(label102, 300, 200);
+        getWorld().addObject(label103, 300, 300);
+        life++;
     }
     public void finish()//finish code (when touching the trophy)
     {
@@ -299,6 +318,7 @@ public class playerCharacter extends Actor
         {
             removeTouching(Finish.class);
             MyWorld world = (MyWorld) getWorld();
+            getWorld().addObject(label104, 300, 200);
         }
     }
 }
